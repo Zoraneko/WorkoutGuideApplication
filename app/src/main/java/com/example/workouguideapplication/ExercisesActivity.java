@@ -26,6 +26,10 @@ public class ExercisesActivity extends AppCompatActivity {
             return insets;
         });
 
+        Button buttonTraining = findViewById(R.id.buttonTraining2);
+        Button buttonAccount = findViewById(R.id.buttonAccount2);
+
+
         String[] exercises = {"Push Up", "Deadlift", "Jumping Jack"};
         LinearLayout layout = findViewById(R.id.Container_exercises);
 
@@ -68,5 +72,21 @@ public class ExercisesActivity extends AppCompatActivity {
             // Thêm exerciseLayout vào layout chính
             layout.addView(exerciseLayout);
         }
+
+        buttonAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExercisesActivity.this, AccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExercisesActivity.this, TrainingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

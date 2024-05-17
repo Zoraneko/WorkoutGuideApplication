@@ -6,6 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BackworkoutActivity">
+
+    <Button
+        android:id="@+id/buttonReturn"
+        android:layout_width="258dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#000000"
+        android:fontFamily="@font/alata"
+        android:text="Trở lại"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBottom" />
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -18,6 +33,13 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 
     <ScrollView
         android:layout_width="match_parent"

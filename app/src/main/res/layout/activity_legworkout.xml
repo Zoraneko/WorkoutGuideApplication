@@ -6,13 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LegworkoutActivity">
-    <LinearLayout
+
+    <Button
+        android:id="@+id/buttonReturn"
+        android:layout_width="258dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#000000"
+        android:fontFamily="@font/alata"
+        android:text="Trở lại"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBottom" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <LinearLayout
+        android:layout_width="412dp"
+        android:layout_height="631dp"
         android:background="#FFFFFF"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-1dp">
 
         <TextView
             android:id="@+id/textView26"

@@ -26,6 +26,10 @@ public class AccountActivity extends AppCompatActivity {
 
         Button optionloginButton = findViewById(R.id.buttonOptionLogin);
 
+        Button buttonTraining = findViewById(R.id.buttonTraining2);
+        Button buttonExercises = findViewById(R.id.buttonExercises2);
+
+
         optionloginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,6 +39,20 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
+        buttonTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountActivity.this, TrainingActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        buttonExercises.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountActivity.this, ExercisesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
