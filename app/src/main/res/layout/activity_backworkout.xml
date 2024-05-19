@@ -7,10 +7,108 @@
     android:layout_height="match_parent"
     tools:context=".BackworkoutActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="435dp"
+        android:layout_height="53dp"
+        android:background="#FFFFFF"
+        android:fontFamily="@font/alata"
+        android:text="BACK WORKOUT"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTop">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button11"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#000000"
+                    android:drawableTint="#000000"
+                    android:fontFamily="@font/alata"
+                    android:text="Pull Up"
+                    android:textColorLink="@color/black"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/buttonA301"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#000000"
+                    android:drawableTint="#000000"
+                    android:fontFamily="@font/alata"
+                    android:text="Supine Floor Row"
+                    android:textColorLink="@color/black"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/buttonA302"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#000000"
+                    android:drawableTint="#000000"
+                    android:fontFamily="@font/alata"
+                    android:text="Back Extension on Floor"
+                    android:textColorLink="@color/black"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/buttonA304"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="#000000"
+                    android:drawableTint="#000000"
+                    android:fontFamily="@font/alata"
+                    android:text="Single Leg Deadlift"
+                    android:textColorLink="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/buttonReturn"
         android:layout_width="258dp"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:backgroundTint="#000000"
         android:fontFamily="@font/alata"
         android:text="Trở lại"
@@ -21,79 +119,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineBottom" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="56dp"
-        android:background="#D8C7C7"
-        android:text="BACK EXERCISES"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="68dp"
-        android:background="#BDACAC"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        tools:layout_editor_absoluteX="0dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/pullup"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="20dp"
-                android:background="#6CA4D1"
-                android:clickable="true"
-                android:text="Pull up"
-                android:textColor="#1E1C1C"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/supinefloorrow"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:background="#6CA4D1"
-                android:text="Supine Floor Row"
-                android:textColor="#020202"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/backextension"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:background="#6CA4D1"
-                android:text="Back Extension on Floor"
-                android:textColor="#020202"
-                android:textSize="30sp" />
-            <TextView
-                android:id="@+id/singlelegdeadlift"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:background="#6CA4D1"
-                android:text="Single Leg Deadlift"
-                android:textColor="#020202"
-                android:textSize="30sp" />
-        </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

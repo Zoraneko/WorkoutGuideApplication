@@ -24,12 +24,56 @@ public class BackworkoutActivity extends AppCompatActivity {
             return insets;
         });
         Button buttonReturn = findViewById(R.id.buttonReturn);
+        // TODO: Fix this up
+        /*Button B301 = findViewById(R.id.buttonA301);
+        Button B302 = findViewById(R.id.buttonA302);
+        Button B303 = findViewById(R.id.buttonA303);
+        Button B304 = findViewById(R.id.buttonA304);
+
+        B301.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentINST = new Intent(BackworkoutActivity.this,InstructionActivity.class);
+                intentINST.putExtra("ExerciseID","301");
+                startActivity(intentINST);
+            }
+        });
+        B302.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentINST = new Intent(BackworkoutActivity.this,InstructionActivity.class);
+                intentINST.putExtra("ExerciseID","302");
+                startActivity(intentINST);
+            }
+        });
+        B303.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentINST = new Intent(BackworkoutActivity.this,InstructionActivity.class);
+                intentINST.putExtra("ExerciseID","303");
+                startActivity(intentINST);
+            }
+        });
+        B304.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentINST = new Intent(BackworkoutActivity.this,InstructionActivity.class);
+                intentINST.putExtra("ExerciseID","304");
+                startActivity(intentINST);
+            }
+        });
+        buttonReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });*/
+
 
         buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BackworkoutActivity.this, TrainingActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

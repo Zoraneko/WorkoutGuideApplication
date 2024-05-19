@@ -6,13 +6,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InstructionActivity">
-    <VideoView android:id="@+id/videoView3" android:layout_width="350dp" android:layout_height="170dp" app:layout_constraintBottom_toTopOf="@+id/constraintLayout" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.441" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.543"/>
+
+    <VideoView
+        android:id="@+id/videoView3"
+        android:layout_width="320dp"
+        android:layout_height="180dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543" />
     <TextView android:id="@+id/textView12" android:layout_width="330dp" android:layout_height="58dp" android:fontFamily="@font/alata" android:text="HƯỚNG DẪN" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textSize="34sp" android:textStyle="bold" app:layout_constraintBottom_toTopOf="@+id/videoView3" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.507" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="1.0"/>
     <TextView android:id="@+id/textViewWorkoutName" android:layout_width="350dp" android:layout_height="54dp" android:layout_marginBottom="4dp" android:background="#37000000" android:clickable="false" android:ellipsize="none" android:fadingEdge="none" android:fontFamily="@font/alata" android:text="Tên Bài tập" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textSize="34sp" android:textStyle="bold" app:layout_constraintBottom_toTopOf="@+id/constraintLayout" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.492" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/videoView3" app:layout_constraintVertical_bias="0.425"/>
     <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/constraintLayout" android:layout_width="395dp" android:layout_height="306dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.2" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.743">
         <ScrollView android:layout_width="350dp" android:layout_height="436dp" android:layout_marginEnd="2dp" android:layout_marginBottom="2dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.518" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
-                <TextView android:id="@+id/textView16" android:layout_width="match_parent" android:layout_height="wrap_content" android:fontFamily="@font/alata" android:text="1\n\n2\n\n3\n\n4\n\n5\n\n6\n\n7\n\n8\n\n9\n\n" android:textSize="24sp"/>
+
+                <TextView
+                    android:id="@+id/textViewMUSCLE1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/alata"
+                    android:text="FOCUS AREA"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewMUSCLE2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/alata"
+                    android:text="[Focus muscle area here]"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewPREP1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/alata"
+                    android:text="PREPARATION"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewPREP2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/alata"
+                    android:text="[Preparation here]"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewINST1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/alata"
+                    android:text="EXECUTION"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewINST2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/alata"
+                    android:text="[Instruction here]"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textViewTIP1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/alata"
+                    android:text="KEY TIPS"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewTIP2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/alata"
+                    android:text="[Key tips here]"
+                    android:textSize="20sp" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

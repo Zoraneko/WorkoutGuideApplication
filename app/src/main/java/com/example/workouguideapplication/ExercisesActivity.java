@@ -29,11 +29,18 @@ public class ExercisesActivity extends AppCompatActivity {
         Button buttonTraining = findViewById(R.id.buttonTraining2);
         Button buttonAccount = findViewById(R.id.buttonAccount2);
 
-
-        String[] exercises = {"Push Up", "Deadlift", "Jumping Jack"};
+        // Đây là mảng kí tự chứa tên các bài tập
+       // TODO: mảng dưới đây sẽ được bỏ đi
+        String[][] exercises ={
+                {"Push Up", "Deadlift", "Jumping Jack"},
+                {"1", "2", "3"},
+                {"NoiDung1", "NoiDung2", "NoiDung3"},
+                {"LinkVideo1", "LinkVideo2","LinkVideo3"},
+        };
         LinearLayout layout = findViewById(R.id.Container_exercises);
 
-        for (String exercise : exercises) {
+        // TODO: sẽ dùng cách duyệt db theo tên để tạo
+        for (int i = 0; i < exercises[0].length; i++) {
             // Tạo Button mới cho mỗi bài tập
             LinearLayout exerciseLayout = new LinearLayout(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -48,18 +55,31 @@ public class ExercisesActivity extends AppCompatActivity {
 
             // Tạo TextView cho tên bài tập
             Button exerciseButton = new Button(this);
-            exerciseButton.setText(exercise);
+
+            exerciseButton.setText(exercises[0][i]); // TODO: đặt tên theo tên đang đc duyệt
+
             exerciseButton.setTextSize(32f);
             exerciseButton.setTextColor(Color.WHITE);
             exerciseButton.setPadding(16, 16, 16, 32);
             exerciseButton.setBackgroundColor(Color.BLACK);
             exerciseButton.setClickable(true);
 
+            // Tạm thời khởi tạo finalI để lấy giá trị hiện tại của i
+            // finalI sẽ được sử dụng làm biến đếm để putExtra có thể truy cập và gửi giá trị ID trong mảng cho InstructionActivity
+
             exerciseButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(ExercisesActivity.this, InstructionActivity.class);
+                    // Ở đây chúng ta sẽ đặt thêm các Extra Message khác cho Intent được gửi cho InstructionActivity
+                    // FIXME: các ExtraMessage này sẽ tương ứng với ID của Exercise hiện tại
+
                     intent.putExtra("EXTRA_MESSAGE","Exercises");
+
+
+                    intent.putExtra("ExerciseID","Đặt theo ID của Exercise đang được duyệt theo tên");
+
+
                     startActivity(intent);
                 }
             });
@@ -72,6 +92,8 @@ public class ExercisesActivity extends AppCompatActivity {
             // Thêm exerciseLayout vào layout chính
             layout.addView(exerciseLayout);
         }
+
+        // TODO: tạo thêm 1 button mới để lọc + tạo event listener với nhưng exercise có tag ko match sẽ bị ẩn
 
         buttonAccount.setOnClickListener(new View.OnClickListener() {
             @Override
