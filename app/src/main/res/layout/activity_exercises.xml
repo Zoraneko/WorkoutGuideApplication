@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/alata"
-        android:text="Luyện tập"
+        android:text="Training"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,13 +27,14 @@
         android:layout_height="0dp"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/alata"
-        android:text="Bài Tập"
+        android:text="Training"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/buttonAccount2"
@@ -41,7 +42,7 @@
         android:layout_height="0dp"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/alata"
-        android:text="Tài khoản"
+        android:text="Account"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -89,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="BÀI TẬP"
+        android:text="EXERCISES"
         android:textSize="34dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -100,6 +101,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="500dp"
+        android:contentDescription="A scrollview to browse through all available exercises"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

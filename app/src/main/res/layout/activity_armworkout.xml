@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:backgroundTint="#000000"
         android:fontFamily="@font/alata"
-        android:text="Trở lại"
+        android:text="Return"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

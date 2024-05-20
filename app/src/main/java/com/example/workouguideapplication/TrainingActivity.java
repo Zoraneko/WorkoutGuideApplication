@@ -4,12 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.time.LocalDateTime;
+import android.provider.CalendarContract;
 
 public class TrainingActivity extends AppCompatActivity {
 
@@ -32,6 +41,47 @@ public class TrainingActivity extends AppCompatActivity {
 
         Button buttonExercises = findViewById(R.id.buttonExercises2);
         Button buttonAccount = findViewById(R.id.buttonAccount2);
+        ImageButton buttonReminder = findViewById(R.id.imageButton);
+
+        // Triển khai onclick eventlisstener cho lịch hẹn
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Tháng bắt đầu từ 0 nên cần +1
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+        String startTime = String.format("%04d-%02d-%02dT%02d:%02d:%02d", year, month, day, hour, minute, second);
+        String endTime = String.format("%04d-%02d-%02dT%02d:%02d:%02d", year, month, day, hour + 4, minute, second);
+
+        // Parsing the date and time
+        SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        Date mStartTime = null;
+        Date mEndTime = null;
+        try {
+            mStartTime = mSimpleDateFormat.parse(startTime);
+            mEndTime = mSimpleDateFormat.parse(endTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // When Button is clicked, Intent started
+        // to create an event with given time
+        Date finalMStartTime = mStartTime;
+        Date finalMEndTime = mEndTime;
+        buttonReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(Intent.ACTION_EDIT);
+                mIntent.setType("vnd.android.cursor.item/event");
+                mIntent.putExtra("beginTime", finalMStartTime.getTime());
+                mIntent.putExtra("time", true);
+                mIntent.putExtra("rule", "FREQ=WEEKLY");
+                mIntent.putExtra("endTime", finalMEndTime.getTime());
+                mIntent.putExtra("title", "Workout Reminder");
+                startActivity(mIntent);
+            }
+        });
 
         // Triển khai onclick eventlistener cho 4 button
         buttonChest.setOnClickListener(new View.OnClickListener() {

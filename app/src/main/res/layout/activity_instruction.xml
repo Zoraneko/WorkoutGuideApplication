@@ -17,8 +17,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.543" />
-    <TextView android:id="@+id/textView12" android:layout_width="330dp" android:layout_height="58dp" android:fontFamily="@font/alata" android:text="HƯỚNG DẪN" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textSize="34sp" android:textStyle="bold" app:layout_constraintBottom_toTopOf="@+id/videoView3" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.507" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="1.0"/>
-    <TextView android:id="@+id/textViewWorkoutName" android:layout_width="350dp" android:layout_height="54dp" android:layout_marginBottom="4dp" android:background="#37000000" android:clickable="false" android:ellipsize="none" android:fadingEdge="none" android:fontFamily="@font/alata" android:text="Tên Bài tập" android:textAlignment="center" android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textSize="34sp" android:textStyle="bold" app:layout_constraintBottom_toTopOf="@+id/constraintLayout" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.492" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/videoView3" app:layout_constraintVertical_bias="0.425"/>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="330dp"
+        android:layout_height="58dp"
+        android:fontFamily="@font/alata"
+        android:text="INSTRUCTION"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/videoView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textViewWorkoutName"
+        android:layout_width="350dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="4dp"
+        android:background="#37000000"
+        android:clickable="false"
+        android:ellipsize="none"
+        android:fadingEdge="none"
+        android:fontFamily="@font/alata"
+        android:text="Workout Name"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/videoView3"
+        app:layout_constraintVertical_bias="0.425" />
     <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/constraintLayout" android:layout_width="395dp" android:layout_height="306dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.2" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.743">
         <ScrollView android:layout_width="350dp" android:layout_height="436dp" android:layout_marginEnd="2dp" android:layout_marginBottom="2dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.518" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.0">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
@@ -105,5 +142,20 @@
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <Button android:id="@+id/buttonDone" android:layout_width="355dp" android:layout_height="58dp" android:backgroundTint="#000000" android:fontFamily="@font/alata" android:text="HOÀN THÀNH" android:textAlignment="center" android:textSize="24sp" android:textStyle="bold" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.974"/>
+
+    <Button
+        android:id="@+id/buttonDone"
+        android:layout_width="355dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#000000"
+        android:fontFamily="@font/alata"
+        android:text="FINISH"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974" />
 </androidx.constraintlayout.widget.ConstraintLayout>
