@@ -8,13 +8,25 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ExercisesActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+public class ExercisesActivity extends AppCompatActivity {
+    Map<String, Object> data = new HashMap<>();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,67 +43,77 @@ public class ExercisesActivity extends AppCompatActivity {
 
         // Đây là mảng kí tự chứa tên các bài tập
        // TODO: mảng dưới đây sẽ được bỏ đi
-        String[][] exercises ={
-                {"Push Up", "Deadlift", "Jumping Jack"},
-                {"1", "2", "3"},
-                {"NoiDung1", "NoiDung2", "NoiDung3"},
-                {"LinkVideo1", "LinkVideo2","LinkVideo3"},
-        };
+
         LinearLayout layout = findViewById(R.id.Container_exercises);
 
         // TODO: sẽ dùng cách duyệt db theo tên để tạo
-        for (int i = 0; i < exercises[0].length; i++) {
-            // Tạo Button mới cho mỗi bài tập
-            LinearLayout exerciseLayout = new LinearLayout(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            params.setMargins(0, 0, 0, 32); // Khoảng cách giữa các ô
-            exerciseLayout.setLayoutParams(params);
-            exerciseLayout.setOrientation(LinearLayout.VERTICAL);
+        db.collection("Exercises")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                data.putAll(document.getData());
+                                // Tạo Button mới cho mỗi bài tập
+                                LinearLayout exerciseLayout = new LinearLayout(ExercisesActivity.this);
+                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.MATCH_PARENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                );
+                                params.setMargins(0, 0, 0, 32); // Khoảng cách giữa các ô
+                                exerciseLayout.setLayoutParams(params);
+                                exerciseLayout.setOrientation(LinearLayout.VERTICAL);
 
 
 
-            // Tạo TextView cho tên bài tập
-            Button exerciseButton = new Button(this);
+                                // Tạo TextView cho tên bài tập
+                                Button exerciseButton = new Button(ExercisesActivity.this);
 
-            exerciseButton.setText(exercises[0][i]); // TODO: đặt tên theo tên đang đc duyệt
+                                exerciseButton.setText((CharSequence) data.get("Name")); // TODO: đặt tên theo tên đang đc duyệt
 
-            exerciseButton.setTextSize(32f);
-            exerciseButton.setTextColor(Color.WHITE);
-            exerciseButton.setPadding(16, 16, 16, 32);
-            exerciseButton.setBackgroundColor(Color.BLACK);
-            exerciseButton.setClickable(true);
+                                exerciseButton.setTextSize(32f);
+                                exerciseButton.setTextColor(Color.WHITE);
+                                exerciseButton.setPadding(16, 16, 16, 32);
+                                exerciseButton.setBackgroundColor(Color.BLACK);
+                                exerciseButton.setClickable(true);
 
-            // Tạm thời khởi tạo finalI để lấy giá trị hiện tại của i
-            // finalI sẽ được sử dụng làm biến đếm để putExtra có thể truy cập và gửi giá trị ID trong mảng cho InstructionActivity
+                                // Tạm thời khởi tạo finalI để lấy giá trị hiện tại của i
+                                // finalI sẽ được sử dụng làm biến đếm để putExtra có thể truy cập và gửi giá trị ID trong mảng cho InstructionActivity
 
-            exerciseButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ExercisesActivity.this, InstructionActivity.class);
-                    // Ở đây chúng ta sẽ đặt thêm các Extra Message khác cho Intent được gửi cho InstructionActivity
-                    // FIXME: các ExtraMessage này sẽ tương ứng với ID của Exercise hiện tại
-
-                    intent.putExtra("EXTRA_MESSAGE","Exercises");
+                                exerciseButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(ExercisesActivity.this, InstructionActivity.class);
+                                        // Ở đây chúng ta sẽ đặt thêm các Extra Message khác cho Intent được gửi cho InstructionActivity
 
 
-                    intent.putExtra("ExerciseID","Đặt theo ID của Exercise đang được duyệt theo tên");
+                                        intent.putExtra("EXTRA_MESSAGE","Exercises");
 
 
-                    startActivity(intent);
-                }
-            });
+                                        intent.putExtra("ExerciseID",(String)data.get("Id"));
+
+
+                                        startActivity(intent);
+                                    }
+                                });
 
 
 
-            // Thêm các TextView vào exerciseLayout
-            exerciseLayout.addView(exerciseButton);
+                                // Thêm các TextView vào exerciseLayout
+                                exerciseLayout.addView(exerciseButton);
 
-            // Thêm exerciseLayout vào layout chính
-            layout.addView(exerciseLayout);
-        }
+                                // Thêm exerciseLayout vào layout chính
+                                layout.addView(exerciseLayout);
+
+                            }
+                        }
+                    }
+                });
+
+
+
+
 
         // TODO: tạo thêm 1 button mới để lọc + tạo event listener với nhưng exercise có tag ko match sẽ bị ẩn
 

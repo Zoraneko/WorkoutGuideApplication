@@ -11,13 +11,25 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class InstructionActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+public class InstructionActivity extends AppCompatActivity {
+    Map<String, Object> data = new HashMap<>();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,18 +43,11 @@ public class InstructionActivity extends AppCompatActivity {
         
         // Nhận Intent từ các bên khác gửi đến 
         // Đồng thời nhận các giá trị thuộc tính khác như tên bài tập, ID
-        // TODO sẽ có 1 lần duyệt để match theo ID đc intent gửi sang, sau đó truy xuất các thuộc tính kahsc
+
         Intent intent = getIntent();
         String message = intent.getStringExtra("EXTRA_MESSAGE");
         String ExerciseID = intent.getStringExtra("ExerciseID");
 
-        // TODO: truy vấn here
-        String ExerciseName="Name";
-        String ExerciseVideo = "[URL_here]";
-        String ExerciseMuscle = "[MUSCLE]\n[MUSCLE]\n[MUSCLE]";
-        String ExercisePrep = "[PREP]\n[PREP]\n[PREP]";
-        String ExerciseInst = "[INST]\n[INST]\n[INST]";
-        String ExerciseTip = "[TIP]\n[TIP]\n[TIP]";
 
         // Khai báo các thành phần giao diện
         Button buttonDone = findViewById(R.id.buttonDone);
@@ -53,19 +58,43 @@ public class InstructionActivity extends AppCompatActivity {
         TextView textViewTip = findViewById(R.id.textViewTIP2);
         VideoView videoGuide = (VideoView) findViewById(R.id.videoView3);
 
+        //
 
-        // Set text 5 thành phần NAME - MUSCLE - PREP - INST - TIP
-        textViewExerciseName.setText(ExerciseName);
-        textViewMuscle.setText(ExerciseMuscle);
-        textViewPrep.setText(ExercisePrep);
-        textViewInst.setText(ExerciseInst);
-        textViewTip.setText(ExerciseTip);
+
+        db.collection("Exercises")
+                .whereEqualTo("Id", ExerciseID)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                data.putAll(document.getData());
+                                textViewExerciseName.setText((CharSequence) data.get("Name"));
+                                textViewMuscle.setText((CharSequence) data.get("Muscle"));
+                                textViewPrep.setText((CharSequence) data.get("Prepare"));
+                                String Ins = Objects.requireNonNull(data.get("Instruction")).toString();
+                                String[] Inst = Ins.split(":");
+                                String Instruction = "";
+                                for (String s : Inst) {
+                                    Instruction += s + "\r\n";
+                                }
+                                textViewInst.setText(Instruction);
+                                textViewTip.setText((CharSequence) data.get("Tips"));
+
+                                // TODO: String url = data.get("URL");
+                            }
+                        }
+                    }
+                });
+
+
 
 
 
         // Set VIDEO
         // FIXME: đây là minh họa video, sau này chúng ta sẽ sửa Uri.parse bằng string ExerciseVideo
-        String videoUrl = "https://drive.google.com/uc?export=download&id=1M-OOPl3aqjr26b7harAUzaX8hOY4jk3B";
+        String videoUrl = "https://drive.google.com/uc?id=11kU26NJXlimmepd8GwOoNTG0hfnp1qNW&export=download";
         Uri uri = Uri.parse(videoUrl);
         videoGuide.setVideoURI(uri);
         MediaController mediaController = new MediaController(this);
