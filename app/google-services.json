@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "642657901302",
+    "project_id": "workoutguide-57023",
+    "storage_bucket": "workoutguide-57023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642657901302:android:603c896ad627adae126ad7",
+        "android_client_info": {
+          "package_name": "com.example.workouguideapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLQvTNK14QtKhCflGbWvebnBdlvE54O4Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
