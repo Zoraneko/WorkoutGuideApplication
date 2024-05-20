@@ -42,11 +42,11 @@ public class ExercisesActivity extends AppCompatActivity {
         Button buttonAccount = findViewById(R.id.buttonAccount2);
 
         // Đây là mảng kí tự chứa tên các bài tập
-       // TODO: mảng dưới đây sẽ được bỏ đi
+
 
         LinearLayout layout = findViewById(R.id.Container_exercises);
 
-        // TODO: sẽ dùng cách duyệt db theo tên để tạo
+
         db.collection("Exercises")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

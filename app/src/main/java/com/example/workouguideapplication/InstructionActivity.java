@@ -102,6 +102,7 @@ public class InstructionActivity extends AppCompatActivity {
         videoGuide.setMediaController(mediaController);
         videoGuide.requestFocus();
 
+
         // Bắt đầu phát video
         videoGuide.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -109,7 +110,7 @@ public class InstructionActivity extends AppCompatActivity {
                 videoGuide.start();
             }
         });
-
+        videoGuide.setOnCompletionListener(mp -> videoGuide.start());
 
         buttonDone.setOnClickListener(new View.OnClickListener() {
             @Override
