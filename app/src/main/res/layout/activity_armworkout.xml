@@ -72,56 +72,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/buttonA301"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#000000"
-                    android:drawableTint="#000000"
-                    android:fontFamily="@font/alata"
-                    android:text="Bicep Curl"
-                    android:textColorLink="@color/black"
-                    android:textSize="20sp" />
-
-                <Button
-                    android:id="@+id/buttonA302"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#000000"
-                    android:drawableTint="#000000"
-                    android:fontFamily="@font/alata"
-                    android:text="Kneeling Triceps Extension"
-                    android:textColorLink="@color/black"
-                    android:textSize="20sp" />
-
-                <Button
-                    android:id="@+id/buttonA303"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#000000"
-                    android:drawableTint="#000000"
-                    android:fontFamily="@font/alata"
-                    android:text="Arm Circle"
-                    android:textColorLink="@color/black"
-                    android:textSize="20sp" />
-
-                <Button
-                    android:id="@+id/buttonA304"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="20dp"
-                    android:backgroundTint="#000000"
-                    android:drawableTint="#000000"
-                    android:fontFamily="@font/alata"
-                    android:text="Leg Bicep Curl"
-                    android:textColorLink="@color/black"
-                    android:textSize="20sp" />
-            </LinearLayout>
+                android:orientation="vertical"/>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

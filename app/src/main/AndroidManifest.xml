@@ -18,8 +18,8 @@
         android:theme="@style/Theme.WorkouGuideApplication"
         tools:targetApi="31">
         <activity
-            android:name=".BlankActivity"
-            android:exported="false" />
+            android:name=".TrainingActivity"
+            android:exported="true" />
         <activity
             android:name=".InstructionActivity"
             android:exported="true" />
@@ -45,7 +45,7 @@
             android:name=".ExercisesActivity"
             android:exported="true" />
         <activity
-            android:name=".TrainingActivity"
+            android:name=".BlankActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
