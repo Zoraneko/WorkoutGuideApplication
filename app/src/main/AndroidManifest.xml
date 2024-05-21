@@ -21,7 +21,7 @@
             android:name=".FilterActivity"
             android:exported="false" />
         <activity
-            android:name=".OptionLogSignActivity"
+            android:name=".TrainingActivity"
             android:exported="true" />
         <activity
             android:name=".SigninActivity"
@@ -51,7 +51,7 @@
             android:name=".ExercisesActivity"
             android:exported="true" />
         <activity
-            android:name=".TrainingActivity"
+            android:name=".OptionLogSignActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

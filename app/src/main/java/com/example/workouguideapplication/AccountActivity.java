@@ -24,7 +24,6 @@ public class AccountActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button optionloginButton = findViewById(R.id.buttonOptionLogin);
         Button optionLogoutButton = findViewById(R.id.buttonOptionLogout);
 
         Button buttonTraining = findViewById(R.id.buttonTraining2);
@@ -40,14 +39,7 @@ public class AccountActivity extends AppCompatActivity {
 
             }
         });
-        optionloginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //
-                Intent intent_login = new Intent(AccountActivity.this, LoginActivity.class);
-                startActivity(intent_login);
-            }
-        });
+
 
         buttonTraining.setOnClickListener(new View.OnClickListener() {
             @Override
