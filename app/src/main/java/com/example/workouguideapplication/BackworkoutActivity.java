@@ -85,7 +85,7 @@ public class BackworkoutActivity extends AppCompatActivity {
 
                                     exerciseButton.setText((CharSequence) data.get("Name")); // TODO: đặt tên theo tên đang đc duyệt
 
-                                    exerciseButton.setTextSize(32f);
+                                    exerciseButton.setTextSize(28f);
                                     exerciseButton.setTextColor(Color.WHITE);
                                     exerciseButton.setPadding(16, 16, 16, 32);
                                     exerciseButton.setBackgroundColor(Color.BLACK);
