@@ -30,6 +30,8 @@ import java.util.Objects;
 public class InstructionActivity extends AppCompatActivity {
     Map<String, Object> data = new HashMap<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,14 +77,21 @@ public class InstructionActivity extends AppCompatActivity {
                                 textViewPrep.setText((CharSequence) data.get("Prepare"));
                                 String Ins = Objects.requireNonNull(data.get("Instruction")).toString();
                                 String[] Inst = Ins.split(":");
-                                String Instruction = "";
+                                StringBuilder Instruction = new StringBuilder();
                                 for (String s : Inst) {
-                                    Instruction += s + "\r\n";
+                                    Instruction.append(s).append("\r\n");
                                 }
-                                textViewInst.setText(Instruction);
-                                textViewTip.setText((CharSequence) data.get("Tips"));
+                                textViewInst.setText(Instruction.toString());
+                                String tips = Objects.requireNonNull(data.get("Tips")).toString();
+                                String[] stips = tips.split("\\.");
+                                StringBuilder Tips = new StringBuilder();
+                                for(String s : stips){
+                                    Tips.append(s).append("\r\n");
+                                }
 
-                                // TODO: String url = data.get("URL");
+                                textViewTip.setText(Tips.toString());
+                                Uri uri = Uri.parse(Objects.requireNonNull(data.get("VideoLink")).toString());
+                                videoGuide.setVideoURI(uri);
                             }
                         }
                     }
@@ -93,10 +102,6 @@ public class InstructionActivity extends AppCompatActivity {
 
 
         // Set VIDEO
-        // FIXME: đây là minh họa video, sau này chúng ta sẽ sửa Uri.parse bằng string ExerciseVideo
-        String videoUrl = "https://drive.google.com/uc?id=11kU26NJXlimmepd8GwOoNTG0hfnp1qNW&export=download";
-        Uri uri = Uri.parse(videoUrl);
-        videoGuide.setVideoURI(uri);
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoGuide);
         videoGuide.setMediaController(mediaController);

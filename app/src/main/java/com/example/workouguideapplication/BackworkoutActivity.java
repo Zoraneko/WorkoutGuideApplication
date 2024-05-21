@@ -20,13 +20,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class BackworkoutActivity extends AppCompatActivity {
-    Map<String, Object> data = new HashMap<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    List<Map<String, Object>> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,57 +52,82 @@ public class BackworkoutActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                data.putAll(document.getData());
-                                // Tạo Button mới cho mỗi bài tập
-                                LinearLayout exerciseLayout = new LinearLayout(BackworkoutActivity.this);
-                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                                        LinearLayout.LayoutParams.MATCH_PARENT,
-                                        LinearLayout.LayoutParams.WRAP_CONTENT
-                                );
-                                params.setMargins(0, 0, 0, 32); // Khoảng cách giữa các ô
-                                exerciseLayout.setLayoutParams(params);
-                                exerciseLayout.setOrientation(LinearLayout.VERTICAL);
+                                Map<String, Object> data = new HashMap<>(document.getData());
 
+                                String muscle = Objects.requireNonNull(data.get("Muscle")).toString();
+                                String[] muscles = muscle.split(",");
 
+                                boolean checked = false;
 
-                                // Tạo TextView cho tên bài tập
-                                Button exerciseButton = new Button(BackworkoutActivity.this);
-
-                                exerciseButton.setText((CharSequence) data.get("Name")); // TODO: đặt tên theo tên đang đc duyệt
-
-                                exerciseButton.setTextSize(32f);
-                                exerciseButton.setTextColor(Color.WHITE);
-                                exerciseButton.setPadding(16, 16, 16, 32);
-                                exerciseButton.setBackgroundColor(Color.BLACK);
-                                exerciseButton.setClickable(true);
-
-                                // Tạm thời khởi tạo finalI để lấy giá trị hiện tại của i
-                                // finalI sẽ được sử dụng làm biến đếm để putExtra có thể truy cập và gửi giá trị ID trong mảng cho InstructionActivity
-
-                                exerciseButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(BackworkoutActivity.this, InstructionActivity.class);
-                                        // Ở đây chúng ta sẽ đặt thêm các Extra Message khác cho Intent được gửi cho InstructionActivity
-
-
-                                        intent.putExtra("EXTRA_MESSAGE","Exercises");
-
-
-                                        intent.putExtra("ExerciseID",(String)data.get("Id"));
-
-
-                                        startActivity(intent);
+                                for (String s : muscles)
+                                {
+                                    if(Objects.equals(s, "Back")){
+                                        checked = true;
+                                        break;
                                     }
-                                });
+                                }
+
+                                if(checked){
+                                    // Tạo Button mới cho mỗi bài tập
+                                    LinearLayout exerciseLayout = new LinearLayout(BackworkoutActivity.this);
+                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.MATCH_PARENT,
+                                            LinearLayout.LayoutParams.WRAP_CONTENT
+                                    );
+                                    params.setMargins(0, 0, 0, 32); // Khoảng cách giữa các ô
+                                    exerciseLayout.setLayoutParams(params);
+                                    exerciseLayout.setOrientation(LinearLayout.VERTICAL);
 
 
 
-                                // Thêm các TextView vào exerciseLayout
-                                exerciseLayout.addView(exerciseButton);
+                                    // Tạo TextView cho tên bài tập
+                                    Button exerciseButton = new Button(BackworkoutActivity.this);
 
-                                // Thêm exerciseLayout vào layout chính
-                                layout.addView(exerciseLayout);
+                                    exerciseButton.setText((CharSequence) data.get("Name")); // TODO: đặt tên theo tên đang đc duyệt
+
+                                    exerciseButton.setTextSize(32f);
+                                    exerciseButton.setTextColor(Color.WHITE);
+                                    exerciseButton.setPadding(16, 16, 16, 32);
+                                    exerciseButton.setBackgroundColor(Color.BLACK);
+                                    exerciseButton.setClickable(true);
+
+                                    list.add(data);
+
+                                    // Tạm thời khởi tạo finalI để lấy giá trị hiện tại của i
+                                    // finalI sẽ được sử dụng làm biến đếm để putExtra có thể truy cập và gửi giá trị ID trong mảng cho InstructionActivity
+
+                                    exerciseButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(BackworkoutActivity.this, InstructionActivity.class);
+                                            // Ở đây chúng ta sẽ đặt thêm các Extra Message khác cho Intent được gửi cho InstructionActivity
+
+
+                                            intent.putExtra("EXTRA_MESSAGE","Exercises");
+
+
+                                            for(Map<String, Object> l : list){
+                                                if(l.get("Name") == exerciseButton.getText())
+                                                {
+                                                    intent.putExtra("ExerciseID",(String)l.get("Id"));
+                                                    break;
+                                                }
+                                            }
+
+
+                                            startActivity(intent);
+                                        }
+                                    });
+
+
+
+                                    // Thêm các TextView vào exerciseLayout
+                                    exerciseLayout.addView(exerciseButton);
+
+                                    // Thêm exerciseLayout vào layout chính
+                                    layout.addView(exerciseLayout);
+                                }
+
 
                             }
                         }

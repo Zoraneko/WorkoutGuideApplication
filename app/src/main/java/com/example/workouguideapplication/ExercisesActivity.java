@@ -20,13 +20,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class ExercisesActivity extends AppCompatActivity {
-    Map<String, Object> data = new HashMap<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    List<Map<String, Object>> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,8 @@ public class ExercisesActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                data.putAll(document.getData());
+                                Map<String, Object> data = new HashMap<>(document.getData());
+
                                 // Tạo Button mới cho mỗi bài tập
                                 LinearLayout exerciseLayout = new LinearLayout(ExercisesActivity.this);
                                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -78,6 +81,8 @@ public class ExercisesActivity extends AppCompatActivity {
                                 exerciseButton.setBackgroundColor(Color.BLACK);
                                 exerciseButton.setClickable(true);
 
+                                list.add(data);
+
                                 // Tạm thời khởi tạo finalI để lấy giá trị hiện tại của i
                                 // finalI sẽ được sử dụng làm biến đếm để putExtra có thể truy cập và gửi giá trị ID trong mảng cho InstructionActivity
 
@@ -91,7 +96,13 @@ public class ExercisesActivity extends AppCompatActivity {
                                         intent.putExtra("EXTRA_MESSAGE","Exercises");
 
 
-                                        intent.putExtra("ExerciseID",(String)data.get("Id"));
+                                        for(Map<String, Object> l : list){
+                                            if(l.get("Name") == exerciseButton.getText())
+                                            {
+                                                intent.putExtra("ExerciseID",(String)l.get("Id"));
+                                                break;
+                                            }
+                                        }
 
 
                                         startActivity(intent);
