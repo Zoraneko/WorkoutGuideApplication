@@ -25,11 +25,21 @@ public class AccountActivity extends AppCompatActivity {
         });
 
         Button optionloginButton = findViewById(R.id.buttonOptionLogin);
+        Button optionLogoutButton = findViewById(R.id.buttonOptionLogout);
 
         Button buttonTraining = findViewById(R.id.buttonTraining2);
         Button buttonExercises = findViewById(R.id.buttonExercises2);
 
+        optionLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_logout = new Intent(AccountActivity.this, OptionLogSignActivity.class);
+                // TODO: code them ocd dawng xuat
 
+                startActivity(intent_logout);
+
+            }
+        });
         optionloginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

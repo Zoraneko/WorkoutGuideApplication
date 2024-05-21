@@ -18,7 +18,13 @@
         android:theme="@style/Theme.WorkouGuideApplication"
         tools:targetApi="31">
         <activity
-            android:name=".BlankActivity"
+            android:name=".FilterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OptionLogSignActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SigninActivity"
             android:exported="true" />
         <activity
             android:name=".InstructionActivity"

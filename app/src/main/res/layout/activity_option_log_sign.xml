@@ -2,104 +2,62 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/acc_contstraintlayout"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountActivity">
-
-    <Button
-        android:id="@+id/buttonExercises2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/alata"
-        android:text="Exercises"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline12"
-        app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
-
-    <Button
-        android:id="@+id/buttonTraining2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/alata"
-        android:text="Training"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
-
-    <Button
-        android:id="@+id/buttonAccount2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/alata"
-        android:text="Account"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+    tools:context=".OptionLogSignActivity">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline11"
+        android:id="@+id/guideline13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.33" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline12"
+        android:id="@+id/guideline14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.66" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alata"
-        android:text="ACCOUNT"
+        android:text="LOGIN"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintBottom_toTopOf="@+id/guideline15"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guideline15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/guideline16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.500684" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/guideline17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
     <Button
-        android:id="@+id/buttonOptionLogin"
+        android:id="@+id/buttonChooseLogin"
         android:layout_width="330dp"
         android:layout_height="60dp"
         android:backgroundTint="#000000"
@@ -109,35 +67,49 @@
         android:textAlignment="gravity"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline15"
         app:layout_constraintVertical_bias="0.266" />
 
     <Button
-        android:id="@+id/buttonOptionLogout"
+        android:id="@+id/buttonChooseSignup"
         android:layout_width="330dp"
         android:layout_height="60dp"
         android:backgroundTint="#000000"
-        android:drawableLeft="@android:drawable/ic_menu_set_as"
+        android:drawableLeft="@android:drawable/ic_menu_add"
         android:fontFamily="@font/alata"
-        android:text="Log out"
+        android:text="Sign up"
         android:textAlignment="gravity"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonOptionLogin"
+        app:layout_constraintTop_toBottomOf="@+id/buttonChooseLogin"
         app:layout_constraintVertical_bias="0.429" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline10"
+        android:id="@+id/guideline18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:fontFamily="@font/alata"
+        android:text="Welcome to Workout Guide!\nPlease choose your login option"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonChooseLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline15" />
 </androidx.constraintlayout.widget.ConstraintLayout>

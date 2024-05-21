@@ -30,8 +30,6 @@ import java.util.Objects;
 public class InstructionActivity extends AppCompatActivity {
     Map<String, Object> data = new HashMap<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +59,7 @@ public class InstructionActivity extends AppCompatActivity {
         VideoView videoGuide = (VideoView) findViewById(R.id.videoView3);
 
         //
+        /*final String[] videoUrl = {new String()};*/
 
 
         db.collection("Exercises")
@@ -77,21 +76,15 @@ public class InstructionActivity extends AppCompatActivity {
                                 textViewPrep.setText((CharSequence) data.get("Prepare"));
                                 String Ins = Objects.requireNonNull(data.get("Instruction")).toString();
                                 String[] Inst = Ins.split(":");
-                                StringBuilder Instruction = new StringBuilder();
+                                String Instruction = "";
                                 for (String s : Inst) {
-                                    Instruction.append(s).append("\r\n");
+                                    Instruction += s + "\r\n";
                                 }
-                                textViewInst.setText(Instruction.toString());
-                                String tips = Objects.requireNonNull(data.get("Tips")).toString();
-                                String[] stips = tips.split("\\.");
-                                StringBuilder Tips = new StringBuilder();
-                                for(String s : stips){
-                                    Tips.append(s).append("\r\n");
-                                }
+                                textViewInst.setText(Instruction);
+                                textViewTip.setText((CharSequence) data.get("Tips"));
 
-                                textViewTip.setText(Tips.toString());
-                                Uri uri = Uri.parse(Objects.requireNonNull(data.get("VideoLink")).toString());
-                                videoGuide.setVideoURI(uri);
+                                /*videoUrl[0] = (String)data.get("VideoLink");*/
+
                             }
                         }
                     }
@@ -102,6 +95,9 @@ public class InstructionActivity extends AppCompatActivity {
 
 
         // Set VIDEO
+
+        Uri uri = Uri.parse("https://drive.google.com/uc?id=1-O4rsAst3tyMiermPlfYXLlmromaUllT&export=download");
+        videoGuide.setVideoURI(uri);
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoGuide);
         videoGuide.setMediaController(mediaController);
