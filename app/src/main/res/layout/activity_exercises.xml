@@ -99,7 +99,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="500dp"
         android:contentDescription="A scrollview to browse through all available exercises"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"

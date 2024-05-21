@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 TextInputEditText InputUsername = (TextInputEditText) findViewById(R.id.username);
                 TextInputEditText InputPassword = (TextInputEditText) findViewById(R.id.pwd);
+                TextView errorText = findViewById(R.id.textView3);
 
                 String username = Objects.requireNonNull(InputUsername.getText()).toString();
                 String password = Objects.requireNonNull(InputPassword.getText()).toString();
@@ -74,7 +76,11 @@ public class LoginActivity extends AppCompatActivity {
                                         }
 
                                     }
-                                    if(!checked) InputUsername.setText("Username or password is invalid");
+                                    if(!checked){
+                                        errorText.setText("Username or password is invalid");
+                                        errorText.setVisibility(View.VISIBLE);
+
+                                    }
                                 }
                             }
                         });
