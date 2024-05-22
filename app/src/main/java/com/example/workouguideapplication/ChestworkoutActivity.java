@@ -85,7 +85,7 @@ public class ChestworkoutActivity extends AppCompatActivity {
                                     exerciseButton.setTextSize(28f);
                                     exerciseButton.setTextColor(Color.WHITE);
                                     exerciseButton.setPadding(16, 16, 16, 32);
-                                    exerciseButton.setBackgroundColor(Color.BLACK);
+                                    exerciseButton.setBackgroundColor(Color.parseColor("#4B76CC"));
                                     exerciseButton.setClickable(true);
 
                                     list.add(data);

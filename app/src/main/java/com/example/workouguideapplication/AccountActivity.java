@@ -25,7 +25,7 @@ public class AccountActivity extends AppCompatActivity {
         });
 
         Button optionLogoutButton = findViewById(R.id.buttonOptionLogout);
-
+        Button gotoSurvey = findViewById(R.id.buttonSurvey);
         Button buttonTraining = findViewById(R.id.buttonTraining2);
         Button buttonExercises = findViewById(R.id.buttonExercises2);
 
@@ -39,7 +39,13 @@ public class AccountActivity extends AppCompatActivity {
 
             }
         });
-
+        gotoSurvey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_survey = new Intent(AccountActivity.this, SurveyActivity.class);
+                startActivity(intent_survey);
+            }
+        });
 
         buttonTraining.setOnClickListener(new View.OnClickListener() {
             @Override

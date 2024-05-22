@@ -5,13 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#80A7E1FF"
     tools:context=".FilterActivity">
 
     <Button
         android:id="@+id/buttonSendResult"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="#3F51B5"
         android:fontFamily="@font/alata"
         android:text="DONE"
         android:textSize="20sp"
@@ -135,6 +136,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup1"
         app:layout_constraintEnd_toStartOf="@+id/guideline22"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline23"
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
@@ -190,6 +192,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline22"
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
@@ -197,8 +200,10 @@
         android:id="@+id/ButtonALL"
         android:layout_width="140dp"
         android:layout_height="60dp"
+        android:background="#4B76CC"
         android:fontFamily="@font/alata"
         android:text="Select All"
+        android:textOff="OFF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline26"

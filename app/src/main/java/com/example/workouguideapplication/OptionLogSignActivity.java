@@ -34,7 +34,7 @@ public class OptionLogSignActivity extends AppCompatActivity {
 
         // Hiển thị Toast thông báo nội dung nhận được
         if (message != null) {
-            Toast.makeText(this, "Bạn đã tạo tài khoản thành công!\nVui lòng đăng nhập vào tài khoản.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You have just completed creating your account!\n Please login now.", Toast.LENGTH_LONG).show();
         }
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
