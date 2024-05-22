@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -78,8 +80,6 @@ public class SigninActivity extends AppCompatActivity {
                 String password = Objects.requireNonNull(inputpwd.getText()).toString();
                 String verifypassword = Objects.requireNonNull(inputverifypwd.getText()).toString();
 
-
-
                 if(username.isEmpty())
                 {
                     errorText.setText("Username cannot be empty");
@@ -143,15 +143,8 @@ public class SigninActivity extends AppCompatActivity {
                             inputusername.setText("");
                             inputverifypwd.clearFocus();
                         }
-
-
                     }
-
                 }
-
-
-
-
             }
         });
     }

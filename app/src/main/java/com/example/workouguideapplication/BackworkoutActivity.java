@@ -45,7 +45,6 @@ public class BackworkoutActivity extends AppCompatActivity {
 
 
         db.collection("Exercises")
-                .whereEqualTo("Muscle","Back")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -91,7 +90,7 @@ public class BackworkoutActivity extends AppCompatActivity {
                                     exerciseButton.setBackgroundColor(Color.BLACK);
                                     exerciseButton.setClickable(true);
 
-
+                                    list.add(data);
 
                                     // Tạm thời khởi tạo finalI để lấy giá trị hiện tại của i
                                     // finalI sẽ được sử dụng làm biến đếm để putExtra có thể truy cập và gửi giá trị ID trong mảng cho InstructionActivity

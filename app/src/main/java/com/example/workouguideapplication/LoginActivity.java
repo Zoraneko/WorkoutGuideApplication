@@ -1,5 +1,6 @@
 package com.example.workouguideapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,13 +23,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    List<Map<String, Object>> listdata = new ArrayList<>();
     boolean checked;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +47,28 @@ public class LoginActivity extends AppCompatActivity {
         });
         Button loginButton = findViewById(R.id.buttonLogin);
 
+        db.collection("Account")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful())
+                        {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                listdata.add(document.getData());
+                            }
+                        }
+                    }
+                });
+
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
+                checked = false;
+
                 TextInputEditText InputUsername = (TextInputEditText) findViewById(R.id.username);
                 TextInputEditText InputPassword = (TextInputEditText) findViewById(R.id.pwd);
                 TextView errorText = findViewById(R.id.textView3);
@@ -53,44 +76,29 @@ public class LoginActivity extends AppCompatActivity {
                 String username = Objects.requireNonNull(InputUsername.getText()).toString();
                 String password = Objects.requireNonNull(InputPassword.getText()).toString();
 
-                Map<String, Object> data = new HashMap<>();
-                data.put("Username", username);
-                data.put("Password", password);
+                for(Map<String, Object> item : listdata)
+                {
+                    if(Objects.equals(item.get("Username"), username) && Objects.equals(item.get("Password"), password))
+                    {
+                        checked = true;
+                        break;
+                    }
+                }
 
-                checked = false;
-
-                db.collection("Account")
-                        .whereEqualTo("Username", username)
-                        .whereEqualTo("Password", password)
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if(task.isSuccessful())
-                                {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        if(document.getData().equals(data)){
-                                            Intent intent_login = new Intent(LoginActivity.this, TrainingActivity.class);
-                                            startActivity(intent_login);
-                                            checked = true;
-                                            break;
-                                        }
-
-                                    }
-                                    if(!checked){
-                                        errorText.setText("Username or password is invalid");
-                                        errorText.setVisibility(View.VISIBLE);
-                                        InputPassword.setText("");
-                                        InputUsername.setText("");
-                                        InputPassword.clearFocus();
-
-                                    }
-                                }
-                            }
-                        });
+                if(!checked)
+                {
+                    errorText.setText("Username or password is invalid");
+                    errorText.setVisibility(View.VISIBLE);
+                    InputPassword.setText("");
+                    InputUsername.setText("");
+                    InputPassword.clearFocus();
+                }
+                else
+                {
+                    Intent intent_login = new Intent(LoginActivity.this, TrainingActivity.class);
+                    startActivity(intent_login);
+                }
             }
         });
     }
-
-
 }

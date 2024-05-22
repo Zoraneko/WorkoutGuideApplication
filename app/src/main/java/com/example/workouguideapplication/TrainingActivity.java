@@ -5,11 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -22,9 +25,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.time.LocalDateTime;
 import android.provider.CalendarContract;
+import android.widget.Toast;
 
 public class TrainingActivity extends AppCompatActivity {
 
+    private long backPressedTime;
+    private Toast backToast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,7 +125,6 @@ public class TrainingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentBack = new Intent(TrainingActivity.this, BackworkoutActivity.class);
-
                 startActivity(intentBack);
             }
         });
@@ -127,7 +132,6 @@ public class TrainingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentArm = new Intent(TrainingActivity.this, ArmworkoutActivity.class);
-
                 startActivity(intentArm);
             }
         });
@@ -135,7 +139,6 @@ public class TrainingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentLeg = new Intent(TrainingActivity.this, LegworkoutActivity.class);
-
                 startActivity(intentLeg);
             }
         });
@@ -156,5 +159,29 @@ public class TrainingActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // Người dùng nhấn nút quay lại
+            showExitDialog();
+            return true; // Đánh dấu sự kiện đã được xử lý
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
+    private void showExitDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Confirm Exit")
+                .setMessage("Are you sure you want to exit?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    // Người dùng xác nhận thoát
+                    exitApp(); // Kết thúc Activity
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+    private void exitApp() {
+        finishAffinity(); // Kết thúc tất cả các Activity trong ứng dụng
+        System.exit(0); // Thoát hoàn toàn khỏi ứng dụng
+    }
 }

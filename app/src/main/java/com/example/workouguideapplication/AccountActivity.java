@@ -2,6 +2,7 @@ package com.example.workouguideapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -36,7 +37,7 @@ public class AccountActivity extends AppCompatActivity {
                 // TODO: code them ocd dawng xuat
 
                 startActivity(intent_logout);
-
+                finish();
             }
         });
 
@@ -56,5 +57,22 @@ public class AccountActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // Người dùng nhấn nút quay lại
+            BacktoTraining();
+            return true; // Đánh dấu sự kiện đã được xử lý
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void BacktoTraining()
+    {
+        Intent intent_account = new Intent(AccountActivity.this, TrainingActivity.class);
+        startActivity(intent_account);
+        finish();
     }
 }
