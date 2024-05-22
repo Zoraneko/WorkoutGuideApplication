@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#80A7E1FF"
     tools:context=".SigninActivity">
 
     <TextView
@@ -124,7 +125,7 @@
         android:id="@+id/buttonSignin"
         android:layout_width="330dp"
         android:layout_height="60dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="#3F51B5"
         android:fontFamily="@font/alata"
         android:text="Sign in"
         android:textSize="20sp"

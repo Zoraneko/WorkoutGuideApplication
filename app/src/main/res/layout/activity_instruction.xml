@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#80A7E1FF "
     tools:context=".InstructionActivity">
 
     <VideoView
@@ -38,7 +39,7 @@
         android:id="@+id/textViewWorkoutName"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:background="#37000000"
+        android:background="#804B76CC"
         android:clickable="false"
         android:ellipsize="none"
         android:fadingEdge="none"
@@ -170,7 +171,7 @@
         android:id="@+id/buttonDone"
         android:layout_width="355dp"
         android:layout_height="58dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="#3F51B5"
         android:fontFamily="@font/alata"
         android:text="FINISH"
         android:textAlignment="center"
