@@ -39,12 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         });
         Button loginButton = findViewById(R.id.buttonLogin);
 
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent_login = new Intent(LoginActivity.this, AccountActivity.class);
-                startActivity(intent_login);*/
-
                 TextInputEditText InputUsername = (TextInputEditText) findViewById(R.id.username);
                 TextInputEditText InputPassword = (TextInputEditText) findViewById(R.id.pwd);
                 TextView errorText = findViewById(R.id.textView3);
@@ -69,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                                 {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         if(document.getData().equals(data)){
-                                            Intent intent_login = new Intent(LoginActivity.this, AccountActivity.class);
+                                            Intent intent_login = new Intent(LoginActivity.this, TrainingActivity.class);
                                             startActivity(intent_login);
                                             checked = true;
                                             break;
@@ -79,6 +78,9 @@ public class LoginActivity extends AppCompatActivity {
                                     if(!checked){
                                         errorText.setText("Username or password is invalid");
                                         errorText.setVisibility(View.VISIBLE);
+                                        InputPassword.setText("");
+                                        InputUsername.setText("");
+                                        InputPassword.clearFocus();
 
                                     }
                                 }

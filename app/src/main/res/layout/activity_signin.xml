@@ -121,7 +121,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/buttonLogin2"
+        android:id="@+id/buttonSignin"
         android:layout_width="330dp"
         android:layout_height="60dp"
         android:backgroundTint="#000000"
