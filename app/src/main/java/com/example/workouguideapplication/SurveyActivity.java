@@ -3,12 +3,17 @@ package com.example.workouguideapplication;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -50,6 +55,50 @@ public class SurveyActivity extends AppCompatActivity {
         HEIGHT = Objects.requireNonNull(height.getText()).toString();
         WEIGHT = Objects.requireNonNull(weight.getText()).toString();
 
+        name.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    age.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        age.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    gender.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        height.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    weight.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        weight.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(weight.getWindowToken(), 0);
+                    submit.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         // Code ham xu ly
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

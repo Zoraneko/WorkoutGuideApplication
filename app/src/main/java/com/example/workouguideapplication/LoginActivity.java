@@ -1,8 +1,11 @@
 package com.example.workouguideapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -40,8 +43,33 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
         Button loginButton = findViewById(R.id.buttonLogin);
+        TextInputEditText usernameInput = findViewById(R.id.username);
+        TextInputEditText passwordInput = findViewById(R.id.pwd);
 
+        //
+        usernameInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    passwordInput.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
 
+        passwordInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(passwordInput.getWindowToken(), 0);
+                    loginButton.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
