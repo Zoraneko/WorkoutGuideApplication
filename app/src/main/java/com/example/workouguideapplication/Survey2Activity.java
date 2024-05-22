@@ -31,7 +31,7 @@ import java.util.Objects;
 
 
 
-public class SurveyActivity extends AppCompatActivity {
+public class Survey2Activity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private RadioGroup gender;
     // Khai bao cac string trung gian
@@ -130,33 +130,33 @@ public class SurveyActivity extends AppCompatActivity {
                 if (NAME!=null && AGE!=null && HEIGHT!=null && WEIGHT!=null && GENDER!=null)
                 {
 
-                        if (Integer.parseInt(age.getText().toString())<=0||Float.parseFloat(height.getText().toString())<=0||Float.parseFloat(weight.getText().toString())<=0)
-                        {
-                            Toast.makeText(getBaseContext(),"You can not input negative numbers in Age - Height - Weight fields.", Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(getBaseContext(),"Redirecting to Training Activity", Toast.LENGTH_LONG).show();
-                            NAME = Objects.requireNonNull(name.getText()).toString();
-                            AGE = Objects.requireNonNull(age.getText()).toString();
-                            HEIGHT = Objects.requireNonNull(height.getText()).toString();
-                            WEIGHT = Objects.requireNonNull(weight.getText()).toString();
-                            Intent completeintent = new Intent(SurveyActivity.this, TrainingActivity.class);
+                    if (Integer.parseInt(age.getText().toString())<=0||Float.parseFloat(height.getText().toString())<=0||Float.parseFloat(weight.getText().toString())<=0)
+                    {
+                        Toast.makeText(getBaseContext(),"You can not input negative numbers in Age - Height - Weight fields.", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getBaseContext(),"Redirecting to Training Activity", Toast.LENGTH_LONG).show();
+                        NAME = Objects.requireNonNull(name.getText()).toString();
+                        AGE = Objects.requireNonNull(age.getText()).toString();
+                        HEIGHT = Objects.requireNonNull(height.getText()).toString();
+                        WEIGHT = Objects.requireNonNull(weight.getText()).toString();
+                        Intent completeintent = new Intent(Survey2Activity.this, TrainingActivity.class);
 
-                            HashMap<String, Object> data = new HashMap<>();
-                            data.put("Username", Username);
-                            data.put("Password", Password);
-                            data.put("Name", NAME);
-                            data.put("Age", AGE);
-                            data.put("Height", HEIGHT);
-                            data.put("Weight", WEIGHT);
-                            data.put("Gender", GENDER);
+                        HashMap<String, Object> data = new HashMap<>();
+                        data.put("Username", Username);
+                        data.put("Password", Password);
+                        data.put("Name", NAME);
+                        data.put("Age", AGE);
+                        data.put("Height", HEIGHT);
+                        data.put("Weight", WEIGHT);
+                        data.put("Gender", GENDER);
 
-                            db.collection("Account").document(Username).set(data);
+                        db.collection("Account").document(Username).set(data);
 
-                            completeintent.putExtra("Username", Username);
-                            startActivity(completeintent);
-                        }
+                        completeintent.putExtra("Username", Username);
+                        startActivity(completeintent);
+                    }
 
                 }
                 else

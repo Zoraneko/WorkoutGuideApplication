@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.example.myapp.utils.GlobalSingleton;
+
 public class AccountActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
