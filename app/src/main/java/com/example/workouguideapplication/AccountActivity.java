@@ -85,8 +85,7 @@ public class AccountActivity extends AppCompatActivity {
         gotoSurvey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_survey = new Intent(AccountActivity.this, SurveyActivity.class);
-                intent_survey.putExtra("Username", username);
+                Intent intent_survey = new Intent(AccountActivity.this, Survey2Activity.class);
                 startActivity(intent_survey);
             }
         });

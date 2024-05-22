@@ -17,25 +17,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapp.utils.GlobalSingleton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Objects;
-
+import com.example.myapp.utils.GlobalSingleton;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class Survey2Activity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private RadioGroup gender;
     // Khai bao cac string trung gian
-    String NAME, AGE, HEIGHT, WEIGHT, GENDER;
+    String NAME, AGE, HEIGHT, WEIGHT, GENDER, Password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +51,8 @@ public class Survey2Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Intent intent = getIntent();
-        String Username = intent.getStringExtra("Username");
-        String Password = intent.getStringExtra("Password");
+        GlobalSingleton singleton = GlobalSingleton.getInstance();
+        String Username = singleton.getGlobalVariable();
 
         // Khai bao cac button va input edit text
         TextInputEditText name = findViewById(R.id.textInputName);
@@ -58,14 +62,31 @@ public class Survey2Activity extends AppCompatActivity {
         RadioGroup gender = findViewById(R.id.radioGroup1);
         Button submit = findViewById(R.id.buttonSubmit);
 
-        // Nhan gia tri cho cac string
-        NAME = Objects.requireNonNull(name.getText()).toString();
-        AGE = Objects.requireNonNull(age.getText()).toString();
-        HEIGHT = Objects.requireNonNull(height.getText()).toString();
-        WEIGHT = Objects.requireNonNull(weight.getText()).toString();
-        GlobalSingleton singleton = GlobalSingleton.getInstance();
-        String globalVar = singleton.getGlobalVariable();
-        singleton.setGlobalVariable(NAME);
+
+
+        db.collection("Account")
+                        .whereEqualTo("Username", Username)
+                                .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                for(QueryDocumentSnapshot document : task.getResult())
+                                                {
+                                                    NAME = document.getString("Name");
+                                                    AGE = document.getString("Age");
+                                                    HEIGHT = document.getString("Height");
+                                                    WEIGHT = document.getString("Weight");
+                                                    GENDER = document.getString("Gender");
+                                                    Password = document.getString("Password");
+
+                                                    name.setText(NAME);
+                                                    age.setText(AGE);
+                                                    height.setText(HEIGHT);
+                                                    weight.setText(WEIGHT);
+                                                }
+                                            }
+                                        });
+
         name.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -136,12 +157,12 @@ public class Survey2Activity extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(getBaseContext(),"Redirecting to Training Activity", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),"Redirecting to Account", Toast.LENGTH_LONG).show();
                         NAME = Objects.requireNonNull(name.getText()).toString();
                         AGE = Objects.requireNonNull(age.getText()).toString();
                         HEIGHT = Objects.requireNonNull(height.getText()).toString();
                         WEIGHT = Objects.requireNonNull(weight.getText()).toString();
-                        Intent completeintent = new Intent(Survey2Activity.this, TrainingActivity.class);
+                        Intent completeintent = new Intent(Survey2Activity.this, AccountActivity.class);
 
                         HashMap<String, Object> data = new HashMap<>();
                         data.put("Username", Username);
@@ -153,8 +174,6 @@ public class Survey2Activity extends AppCompatActivity {
                         data.put("Gender", GENDER);
 
                         db.collection("Account").document(Username).set(data);
-
-                        completeintent.putExtra("Username", Username);
                         startActivity(completeintent);
                     }
 

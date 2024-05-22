@@ -63,9 +63,7 @@ public class SurveyActivity extends AppCompatActivity {
         AGE = Objects.requireNonNull(age.getText()).toString();
         HEIGHT = Objects.requireNonNull(height.getText()).toString();
         WEIGHT = Objects.requireNonNull(weight.getText()).toString();
-        GlobalSingleton singleton = GlobalSingleton.getInstance();
-        String globalVar = singleton.getGlobalVariable();
-        singleton.setGlobalVariable(NAME);
+
         name.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
