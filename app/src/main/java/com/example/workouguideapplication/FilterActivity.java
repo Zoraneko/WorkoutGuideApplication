@@ -44,7 +44,7 @@ public class FilterActivity extends AppCompatActivity {
                 // on below line we are getting radio button from our group.
                 RadioButton radioButton = findViewById(checkedId);
                 if (checkedId != -1)
-                    Muscle = (String) radioButton.getText();
+                    Muscle =  radioButton.getText().toString();
 
             }
         });
@@ -55,7 +55,7 @@ public class FilterActivity extends AppCompatActivity {
                 // on below line we are getting radio button from our group.
                 RadioButton radioButton = findViewById(checkedId);
                 if (checkedId != -1)
-                    Equip = (String) radioButton.getText();
+                    Equip = radioButton.getText().toString();
 
             }
         });

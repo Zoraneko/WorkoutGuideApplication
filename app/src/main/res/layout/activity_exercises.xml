@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/buttonTraining2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/alata"
         android:text="Training"
@@ -23,11 +23,11 @@
 
     <Button
         android:id="@+id/buttonExercises2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/alata"
-        android:text="Training"
+        android:text="Exercises"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,8 +38,8 @@
 
     <Button
         android:id="@+id/buttonAccount2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/alata"
         android:text="Account"

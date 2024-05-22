@@ -1,6 +1,9 @@
 package com.example.workouguideapplication;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +45,26 @@ public class TrainingActivity extends AppCompatActivity {
         Button buttonExercises = findViewById(R.id.buttonExercises2);
         Button buttonAccount = findViewById(R.id.buttonAccount2);
         ImageButton buttonReminder = findViewById(R.id.imageButton);
+
+        // Load ảnh từ tài nguyên drawable
+        Bitmap originalBitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.chestimage);
+        Bitmap originalBitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.backimage);
+        Bitmap originalBitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.armimage);
+        Bitmap originalBitmap4 = BitmapFactory.decodeResource(getResources(), R.drawable.legimage);
+
+// Resize ảnh
+        int width = 210; // Chiều rộng mới
+        int height = 210; // Chiều cao mới
+        Bitmap resizedBitmap1 = Bitmap.createScaledBitmap(originalBitmap1, width, height, false);
+        Bitmap resizedBitmap2 = Bitmap.createScaledBitmap(originalBitmap2, width, height, false);
+        Bitmap resizedBitmap3 = Bitmap.createScaledBitmap(originalBitmap3, width, height, false);
+        Bitmap resizedBitmap4 = Bitmap.createScaledBitmap(originalBitmap4, width, height, false);
+
+        // Thiết lập ảnh cho drawableleft của button
+        buttonChest.setCompoundDrawablesWithIntrinsicBounds(new BitmapDrawable(getResources(), resizedBitmap1), null, null, null);
+        buttonBack.setCompoundDrawablesWithIntrinsicBounds(new BitmapDrawable(getResources(), resizedBitmap2), null, null, null);
+        buttonArm.setCompoundDrawablesWithIntrinsicBounds(new BitmapDrawable(getResources(), resizedBitmap3), null, null, null);
+        buttonLeg.setCompoundDrawablesWithIntrinsicBounds(new BitmapDrawable(getResources(), resizedBitmap4), null, null, null);
 
         // Triển khai onclick eventlisstener cho lịch hẹn
         Calendar calendar = Calendar.getInstance();
@@ -133,4 +156,5 @@ public class TrainingActivity extends AppCompatActivity {
             }
         });
     }
+
 }

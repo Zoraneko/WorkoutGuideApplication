@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+
+    <!-- Định dạng hình dạng của nút vuông -->
+    <corners android:radius="0dp" />
+
+    <!-- Màu nền của nút vuông -->
+    <solid android:color="@android:color/holo_green_light" />
+
+    <!-- Độ trong suốt của nút vuông -->
+    <alpha android:fromAlpha="0.5" android:toAlpha="0.5" />
+</shape>

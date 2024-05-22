@@ -2,10 +2,13 @@ package com.example.workouguideapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -26,6 +29,14 @@ public class OptionLogSignActivity extends AppCompatActivity {
         Button buttonLogin = findViewById(R.id.buttonChooseLogin);
         Button buttonSignup = findViewById(R.id.buttonChooseSignup);
 
+        Intent intentSignupComplete = getIntent();
+        String message = intentSignupComplete.getStringExtra("Complete");
+
+        // Hiển thị Toast thông báo nội dung nhận được
+        if (message != null) {
+            Toast.makeText(this, "Bạn đã tạo tài khoản thành công!\nVui lòng đăng nhập vào tài khoản.", Toast.LENGTH_LONG).show();
+        }
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,5 +53,31 @@ public class OptionLogSignActivity extends AppCompatActivity {
                 startActivity(intentSignin);
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // Người dùng nhấn nút quay lại
+            showExitDialog();
+            return true; // Đánh dấu sự kiện đã được xử lý
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void showExitDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Confirm Exit")
+                .setMessage("Are you sure you want to exit?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    // Người dùng xác nhận thoát
+                    exitApp(); // Kết thúc Activity
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+    private void exitApp() {
+        finishAffinity(); // Kết thúc tất cả các Activity trong ứng dụng
+        System.exit(0); // Thoát hoàn toàn khỏi ứng dụng
     }
 }

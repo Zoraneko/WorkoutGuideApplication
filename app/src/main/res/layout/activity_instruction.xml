@@ -10,27 +10,26 @@
     <VideoView
         android:id="@+id/videoView3"
         android:layout_width="320dp"
-        android:layout_height="180dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline31"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.543" />
+        app:layout_constraintTop_toTopOf="@+id/guideline32" />
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="330dp"
-        android:layout_height="58dp"
+        android:layout_width="331dp"
+        android:layout_height="45dp"
         android:fontFamily="@font/alata"
         android:text="INSTRUCTION"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/videoView3"
+        app:layout_constraintBottom_toTopOf="@+id/guideline32"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -38,8 +37,7 @@
     <TextView
         android:id="@+id/textViewWorkoutName"
         android:layout_width="350dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="wrap_content"
         android:background="#37000000"
         android:clickable="false"
         android:ellipsize="none"
@@ -48,15 +46,25 @@
         android:text="Workout Name"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toTopOf="@+id/guideline30"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView3"
-        app:layout_constraintVertical_bias="0.425" />
-    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/constraintLayout" android:layout_width="395dp" android:layout_height="306dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.2" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.743">
+        app:layout_constraintTop_toTopOf="@+id/guideline31"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="395dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline30"
+        app:layout_constraintVertical_bias="0.743">
 
         <ScrollView
             android:layout_width="350dp"
@@ -173,4 +181,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.974" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.46" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.36" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

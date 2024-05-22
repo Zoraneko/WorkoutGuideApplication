@@ -129,6 +129,7 @@ public class SigninActivity extends AppCompatActivity {
                                     data.put("Password", password);
                                     db.collection("Account").document(username).set(data);
                                     Intent intent_signin = new Intent(SigninActivity.this, OptionLogSignActivity.class);
+                                    intent_signin.putExtra("Complete","Completed");
                                     startActivity(intent_signin);
                                 }
                             }

@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorLong;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +54,13 @@ public class ExercisesActivity extends AppCompatActivity {
         Button buttonAccount = findViewById(R.id.buttonAccount2);
         ImageButton buttonFilter = findViewById(R.id.imageButtonSort);
 
+        buttonFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExercisesActivity.this, FilterActivity.class);
+                resultLauncher.launch(intent);
+            }
+        });
         // Đây là mảng kí tự chứa tên các bài tập
 
 
@@ -78,7 +87,6 @@ public class ExercisesActivity extends AppCompatActivity {
                                 exerciseLayout.setOrientation(LinearLayout.VERTICAL);
 
 
-
                                 // Tạo TextView cho tên bài tập
                                 Button exerciseButton = new Button(ExercisesActivity.this);
 
@@ -92,9 +100,6 @@ public class ExercisesActivity extends AppCompatActivity {
 
                                 list.add(data);
 
-                                // Tạm thời khởi tạo finalI để lấy giá trị hiện tại của i
-                                // finalI sẽ được sử dụng làm biến đếm để putExtra có thể truy cập và gửi giá trị ID trong mảng cho InstructionActivity
-
                                 exerciseButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -102,13 +107,12 @@ public class ExercisesActivity extends AppCompatActivity {
                                         // Ở đây chúng ta sẽ đặt thêm các Extra Message khác cho Intent được gửi cho InstructionActivity
 
 
-                                        intent.putExtra("EXTRA_MESSAGE","Exercises");
+                                        intent.putExtra("EXTRA_MESSAGE", "Exercises");
 
 
-                                        for(Map<String, Object> l : list){
-                                            if(l.get("Name") == exerciseButton.getText())
-                                            {
-                                                intent.putExtra("ExerciseID",(String)l.get("Id"));
+                                        for (Map<String, Object> l : list) {
+                                            if (l.get("Name") == exerciseButton.getText()) {
+                                                intent.putExtra("ExerciseID", (String) l.get("Id"));
                                                 break;
                                             }
                                         }
@@ -117,7 +121,6 @@ public class ExercisesActivity extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 });
-
 
 
                                 // Thêm các TextView vào exerciseLayout
@@ -130,11 +133,6 @@ public class ExercisesActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
-
-
-
 
 
         buttonAccount.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +152,9 @@ public class ExercisesActivity extends AppCompatActivity {
         });
 
         // ----------------------------------------------------------------
+        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->{
+
+        });
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -163,18 +164,163 @@ public class ExercisesActivity extends AppCompatActivity {
                             FilterMuscle = data.getStringExtra("Muscle");
                             FilterEquip = data.getStringExtra("Equip");
                             FilterGetAll = data.getStringExtra("GetAll");
-                            // TODO: Phần trên đã lấy dữ liệu về và đưa vào string, hãy code tiếp phần truy vấn dữ liệu
                             // Cos thể code tại đây vì đây là hàm thực hiện sau khi Result đc trả về
+                            if (Objects.equals(FilterGetAll, "Yes")) {
+                                layout.removeAllViews();
+                                db.collection("Exercises")
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        Map<String, Object> data = new HashMap<>(document.getData());
 
+                                                        // Tạo Button mới cho mỗi bài tập
+                                                        LinearLayout exerciseLayout = new LinearLayout(ExercisesActivity.this);
+                                                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                                                LinearLayout.LayoutParams.WRAP_CONTENT
+                                                        );
+                                                        params.setMargins(0, 0, 0, 32); // Khoảng cách giữa các ô
+                                                        exerciseLayout.setLayoutParams(params);
+                                                        exerciseLayout.setOrientation(LinearLayout.VERTICAL);
+
+
+                                                        // Tạo TextView cho tên bài tập
+                                                        Button exerciseButton = new Button(ExercisesActivity.this);
+                                                        exerciseButton.setText((CharSequence) data.get("Name")); // TODO: đặt tên theo tên đang đc duyệt
+
+                                                        exerciseButton.setTextSize(28f);
+                                                        exerciseButton.setTextColor(Color.WHITE);
+                                                        exerciseButton.setPadding(16, 16, 16, 32);
+                                                        exerciseButton.setBackgroundColor(Color.BLACK);
+                                                        exerciseButton.setClickable(true);
+
+                                                        list.add(data);
+
+                                                        exerciseButton.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                Intent intent = new Intent(ExercisesActivity.this, InstructionActivity.class);
+                                                                // Ở đây chúng ta sẽ đặt thêm các Extra Message khác cho Intent được gửi cho InstructionActivity
+
+
+                                                                intent.putExtra("EXTRA_MESSAGE", "Exercises");
+
+
+                                                                for (Map<String, Object> l : list) {
+                                                                    if (l.get("Name") == exerciseButton.getText()) {
+                                                                        intent.putExtra("ExerciseID", (String) l.get("Id"));
+                                                                        break;
+                                                                    }
+                                                                }
+
+
+                                                                startActivity(intent);
+                                                            }
+                                                        });
+
+
+                                                        // Thêm các TextView vào exerciseLayout
+                                                        exerciseLayout.addView(exerciseButton);
+
+                                                        // Thêm exerciseLayout vào layout chính
+                                                        layout.addView(exerciseLayout);
+
+                                                    }
+                                                }
+                                            }
+                                        })
+                                ;
+
+                            }
                         }
+                        if (!Objects.equals(FilterGetAll, "Yes")){
+                            layout.removeAllViews();
+
+                            db.collection("Exercises")
+                                    .whereEqualTo("Equipment", FilterEquip)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                                    Map<String, Object> data = new HashMap<>(document.getData());
+
+                                                    String muscle = Objects.requireNonNull(data.get("Muscle")).toString();
+                                                    String[] muscles = muscle.split(",");
+
+                                                    boolean checked = false;
+                                                    for (String s : muscles) {
+                                                        if (Objects.equals(s, FilterMuscle)) {
+                                                            checked = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                    list.add(data);
+                                                    if (checked) {
+                                                        // Tạo Button mới cho mỗi bài tập
+                                                        LinearLayout exerciseLayout = new LinearLayout(ExercisesActivity.this);
+                                                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                                                LinearLayout.LayoutParams.WRAP_CONTENT
+                                                        );
+                                                        params.setMargins(0, 0, 0, 32); // Khoảng cách giữa các ô
+                                                        exerciseLayout.setLayoutParams(params);
+                                                        exerciseLayout.setOrientation(LinearLayout.VERTICAL);
+
+
+                                                        // Tạo TextView cho tên bài tập
+                                                        Button exerciseButton = new Button(ExercisesActivity.this);
+
+                                                        exerciseButton.setText((CharSequence) data.get("Name")); // TODO: đặt tên theo tên đang đc duyệt
+
+                                                        exerciseButton.setTextSize(28f);
+                                                        exerciseButton.setTextColor(Color.WHITE);
+                                                        exerciseButton.setPadding(16, 16, 16, 32);
+                                                        exerciseButton.setBackgroundColor(Color.BLACK);
+                                                        exerciseButton.setClickable(true);
+                                                        exerciseButton.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+                                                                Intent intent = new Intent(ExercisesActivity.this, InstructionActivity.class);
+                                                                // Ở đây chúng ta sẽ đặt thêm các Extra Message khác cho Intent được gửi cho InstructionActivity
+
+
+                                                                intent.putExtra("EXTRA_MESSAGE", "Exercises");
+
+
+                                                                for (Map<String, Object> l : list) {
+                                                                    if (l.get("Name") == exerciseButton.getText()) {
+                                                                        intent.putExtra("ExerciseID", (String) l.get("Id"));
+                                                                        break;
+                                                                    }
+                                                                }
+
+
+                                                                startActivity(intent);
+                                                            }
+                                                        });
+
+                                                        // Thêm các TextView vào exerciseLayout
+                                                        exerciseLayout.addView(exerciseButton);
+
+                                                        // Thêm exerciseLayout vào layout chính
+                                                        layout.addView(exerciseLayout);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    })
+                            ;
+                        }
+
                     }
-                });
-        buttonFilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ExercisesActivity.this, FilterActivity.class);
-                resultLauncher.launch(intent);
-            }
-        });
+                })
+        ;
+
+
     }
 }
