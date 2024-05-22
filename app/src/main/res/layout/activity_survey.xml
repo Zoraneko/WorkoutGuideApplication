@@ -164,6 +164,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your name"
+            android:inputType="text|textNoSuggestions"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,6 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your age"
+            android:inputType="number"
             android:numeric="integer"
             android:textSize="14sp" />
 
@@ -227,6 +229,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your height"
+            android:inputType="number|numberDecimal|numberSigned"
             android:numeric="signed|decimal"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -244,6 +247,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your weight"
+            android:inputType="number|numberDecimal|numberSigned"
             android:numeric="signed|decimal"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>

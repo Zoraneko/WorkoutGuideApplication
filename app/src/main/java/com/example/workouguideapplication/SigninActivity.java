@@ -1,11 +1,14 @@
 package com.example.workouguideapplication;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,8 +52,45 @@ public class SigninActivity extends AppCompatActivity {
         });
 
         Button buttonSignin = findViewById(R.id.buttonSignin);
+        TextInputEditText inputusername =  findViewById(R.id.username);
+        TextInputEditText inputpwd = findViewById(R.id.pwd);
+        TextInputEditText inputverifypwd = findViewById(R.id.pwd2);
 
         List<Map<String, Object>> listdata = new ArrayList<>();
+        inputusername.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    inputpwd.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        inputpwd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    inputverifypwd.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        inputverifypwd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(inputverifypwd.getWindowToken(),0);
+                    buttonSignin.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         checked = false;
         db.collection("Account")
