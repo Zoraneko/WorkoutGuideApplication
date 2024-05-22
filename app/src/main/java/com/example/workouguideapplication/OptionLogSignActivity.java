@@ -31,6 +31,8 @@ public class OptionLogSignActivity extends AppCompatActivity {
 
         Intent intentSignupComplete = getIntent();
         String message = intentSignupComplete.getStringExtra("Complete");
+        String username = intentSignupComplete.getStringExtra("Username");
+        String password = intentSignupComplete.getStringExtra("Password");
 
         // Hiển thị Toast thông báo nội dung nhận được
         if (message != null) {
@@ -42,7 +44,8 @@ public class OptionLogSignActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentLogin = new Intent(OptionLogSignActivity.this, LoginActivity.class);
-
+                intentLogin.putExtra("Username", username);
+                intentLogin.putExtra("Password", password);
                 startActivity(intentLogin);
             }
         });

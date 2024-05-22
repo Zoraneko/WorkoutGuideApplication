@@ -26,6 +26,7 @@ import java.util.Date;
 import java.time.LocalDateTime;
 import android.provider.CalendarContract;
 import android.widget.Toast;
+import com.example.myapp.utils.GlobalSingleton;
 
 public class TrainingActivity extends AppCompatActivity {
 
@@ -41,6 +42,10 @@ public class TrainingActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent intent = getIntent();
+
+        GlobalSingleton singleton = GlobalSingleton.getInstance();
+        singleton.setGlobalVariable(intent.getStringExtra("Username"));
 
         // Khai báo các button
         Button buttonChest = findViewById(R.id.buttonChestworkout);

@@ -23,10 +23,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class SurveyActivity extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private RadioGroup gender;
     // Khai bao cac string trung gian
     String NAME, AGE, HEIGHT, WEIGHT, GENDER;
@@ -40,6 +43,9 @@ public class SurveyActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent intent = getIntent();
+        String Username = intent.getStringExtra("Username");
+        String Password = intent.getStringExtra("Password");
 
         // Khai bao cac button va input edit text
         TextInputEditText name = findViewById(R.id.textInputName);
@@ -113,10 +119,6 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,8 +132,24 @@ public class SurveyActivity extends AppCompatActivity {
                         else
                         {
                             Toast.makeText(getBaseContext(),"Redirecting to Training Activity", Toast.LENGTH_LONG).show();
+                            NAME = Objects.requireNonNull(name.getText()).toString();
+                            AGE = Objects.requireNonNull(age.getText()).toString();
+                            HEIGHT = Objects.requireNonNull(height.getText()).toString();
+                            WEIGHT = Objects.requireNonNull(weight.getText()).toString();
                             Intent completeintent = new Intent(SurveyActivity.this, TrainingActivity.class);
-                            // TODO: inset query code here
+
+                            HashMap<String, Object> data = new HashMap<>();
+                            data.put("Username", Username);
+                            data.put("Password", Password);
+                            data.put("Name", NAME);
+                            data.put("Age", AGE);
+                            data.put("Height", HEIGHT);
+                            data.put("Weight", WEIGHT);
+                            data.put("Gender", GENDER);
+
+                            db.collection("Account").document(Username).set(data);
+
+                            completeintent.putExtra("Username", Username);
                             startActivity(completeintent);
                         }
 
@@ -143,7 +161,6 @@ public class SurveyActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(),"You can not leave any field blank.\nPlease fill in all fields.", Toast.LENGTH_LONG).show();
                     }
                 }
-
             }
         });
     }

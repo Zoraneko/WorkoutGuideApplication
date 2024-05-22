@@ -165,12 +165,14 @@ public class SigninActivity extends AppCompatActivity {
                                 }
                                 else
                                 {
+                                    Intent intent_signin = new Intent(SigninActivity.this, OptionLogSignActivity.class);
+                                    intent_signin.putExtra("Complete","Completed");
+                                    intent_signin.putExtra("Username",username);
+                                    intent_signin.putExtra("Password",password);
                                     Map<String, Object> data = new HashMap<>();
                                     data.put("Username", username);
                                     data.put("Password", password);
                                     db.collection("Account").document(username).set(data);
-                                    Intent intent_signin = new Intent(SigninActivity.this, OptionLogSignActivity.class);
-                                    intent_signin.putExtra("Complete","Completed");
                                     startActivity(intent_signin);
                                 }
                             }
