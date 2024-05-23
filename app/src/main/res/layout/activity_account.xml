@@ -290,7 +290,7 @@
         android:layout_height="60dp"
         android:backgroundTint="#4B76CC"
         android:drawableLeft="@android:drawable/checkbox_on_background"
-        android:text="Survey"
+        android:text="User Information"
         android:textAlignment="gravity"
         android:textSize="24sp"
         android:textStyle="bold"
